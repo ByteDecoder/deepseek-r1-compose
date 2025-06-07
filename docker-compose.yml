@@ -9,6 +9,18 @@ services:
   web:
     image: nginx:1.27.3-alpine
     volumes:
-    - ./web:/usr/share/nginx/html
+      - ./web:/usr/share/nginx/html
     ports:
-    - "6001:80"
+      - "6001:80"
+
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:main
+    volumes:
+      - ./open-webui:/app/backend/data
+    environment:
+      - OLLAMA_BASE_URL=http://ollama:11434
+    container_name: open-webui
+    restart: always
+    ports:
+      - "6002:8080"
+

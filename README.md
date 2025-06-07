@@ -17,6 +17,7 @@ This project provides a ready-to-use Docker Compose setup for running the DeepSe
    ```bash
    docker compose up -d ollama
    docker compose up -d web
+   docker compose up -d open-webui
    ```
 
 2. **Pull the DeepSeek-R1 Model**
@@ -29,7 +30,7 @@ This project provides a ready-to-use Docker Compose setup for running the DeepSe
 
 3. **Access the Web UI**
 
-   <http://localhost:6001>
+   <http://localhost:6001> or <http://localhost:6002>
 
    Open [web/index.html](web/index.html) in your browser to interact with the model.
 
@@ -60,8 +61,9 @@ This project provides a ready-to-use Docker Compose setup for running the DeepSe
 
 ## Troubleshoting
 
-Check Ollama  is runing on <http://localhost:11434>
-Web UI is running on <http://localhost:6001>
+- Check Ollama  is runing on <http://localhost:11434>
+- Custom Web UI is running on <http://localhost:6001>
+- Open Web UI is running on <http://localhost:6002>
 
 ## References
 
@@ -70,5 +72,6 @@ Web UI is running on <http://localhost:6001>
 
 <https://dev.to/savvasstephnds/run-deepseek-locally-using-docker-2pdm>
 <https://platzi.com/blog/deepseek-r1-instalar-local/>
+<https://www.composerize.com/>
 
 ---
