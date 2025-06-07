@@ -34,6 +34,13 @@ This project provides a ready-to-use Docker Compose setup for running the DeepSe
 
    Open [web/index.html](web/index.html) in your browser to interact with the model.
 
+4. Add new models
+
+   ```bash
+   docker compose exec ollama ollama pull deepseek-r1:7b
+   docker compose exec ollama ollama pull deepseek-coder:1.3b
+   ```
+
 ## Project Structure
 
 ```bash
