@@ -42,6 +42,12 @@ This project provides a ready-to-use Docker Compose setup for running the DeepSe
    docker compose exec ollama ollama pull deepseek-coder:1.3b
    ```
 
+   Inside the Ollama container
+
+   ```bash
+   ollama pull  phi3:mini
+   ```
+
 ## Project Structure
 
 ```bash
