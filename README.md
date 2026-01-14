@@ -71,6 +71,14 @@ docker exec -it ollama ollama ps
    docker compose exec ollama ollama pull deepseek-coder:1.3b
    ```
 
+   Inside the Ollama container
+
+   ```bash
+   ollama pull  phi3:mini
+   ollama pull qwen3:1.7b
+   ollama pull mistral
+   ```
+
 ## Project Structure
 
 ```bash
