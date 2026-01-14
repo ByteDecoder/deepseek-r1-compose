@@ -1,13 +1,23 @@
-services: 
+services:
   ollama:
-    image: ollama/ollama
+    image: ollama/ollama:latest
+    container_name: ollama
     volumes:
-      - ./ollama-models:/root/.ollama
+      - ollama-data:/root/.ollama
     ports:
-      - 11434:11434
+      - "11434:11434"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    restart: no
 
   web:
     image: nginx:1.27.3-alpine
+    container_name: simple-web
     volumes:
       - ./web:/usr/share/nginx/html
     ports:
@@ -15,12 +25,19 @@ services:
 
   open-webui:
     image: ghcr.io/open-webui/open-webui:main
+    container_name: open-webui
     volumes:
-      - ./open-webui:/app/backend/data
+      - open-webui-data:/app/backend/data
     environment:
       - OLLAMA_BASE_URL=http://ollama:11434
-    container_name: open-webui
-    restart: always
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: no
     ports:
       - "6002:8080"
+    depends_on:
+      - ollama
 
+volumes:
+  ollama-data:
+  open-webui-data:

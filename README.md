@@ -1,4 +1,4 @@
-# Deepseek-R1 Local Deployment with Docker & Open WebUI
+# LLM Local Deployment with Docker, Ollama & Open WebUI
 
 ![Deepseek-R1 Web UI Screenshot](article1.jpg)
 
@@ -14,13 +14,42 @@ This project provides a ready-to-use Docker Compose setup for running the DeepSe
 
 1. **Start the Ollama Service**
 
-   ```bash
-   docker compose up -d ollama
-   docker compose up -d web
-   docker compose up -d open-webui
-   ```
+```bash
+docker compose up -d
 
-2. **Pull the DeepSeek-R1 Model**
+# Pull LLM
+# Installing DeepSeekR1:1.5B and other LLM's
+docker exec ollama ollama pull deepseek-r1:1.5b
+docker exec ollama ollama pull deepseek-r1:7b
+docker exec ollama ollama pull deepseek-coder:1.3b
+docker exec ollama ollama pull llama3.2:3b
+docker exec ollama ollama pull gemma2:9b
+docker exec ollama ollama pull mistral:7b
+```
+
+Check NVIDIA
+
+```bash
+docker exec -it ollama nvidia-smi
+```
+
+Check if GPU is doing work:
+
+```bash
+docker exec -it ollama ollama ps
+```
+
+## Recommended Models for a NVIDIA RTX 6GB 3060
+
+| Model | Size | Speed on your 3060 |
+|-------|------|-------------------|
+| Llama 3.2 (3B) | ~2.0GB | Blazing Fast (Full GPU) |
+| Mistral (7B) | ~4.1GB | Fast (Full GPU) |
+| Llama 3.1 (8B) | ~4.7GB | Fast (Full GPU) |
+| Gemma 2 (9B) | ~5.4GB | Good (Likely Full GPU) |
+| Command R | 20GB+ | Slow (Mostly CPU/RAM) |
+
+1. **Pull the DeepSeek-R1 Model**
 
    Choose your desired model size (e.g., `1.5b`):
 
@@ -28,14 +57,14 @@ This project provides a ready-to-use Docker Compose setup for running the DeepSe
    docker compose exec ollama ollama pull deepseek-r1:1.5b
    ```
 
-3. **Access the Web UI**
+2. **Access the Web UI**
 
    - Custom UI <http://localhost:6001>
    - Open WebUI <http://localhost:6002>
 
    Open <http://localhost:6002> in your browser to interact with the model.
 
-4. Add new models
+3. Add new models
 
    ```bash
    docker compose exec ollama ollama pull deepseek-r1:7b
